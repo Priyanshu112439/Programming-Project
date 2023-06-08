@@ -269,5 +269,153 @@ while True:
                 target=random.randint(overs*10+14,overs*10+25)
                 active=1
             else:
-                active=6        
+                active=6
+                
+#bowling
+    while active==1:
+        createbackground()
+        
+        if by<=120:
+            if randomball==1 or randomball==4:
+                if bx>=560 and bx<=582:
+                    currentwicket=1
+                    wicket+=currentwicket
+                    active=2
+                else:
+                    active=2
+            else:
+                active=2
+        bowl()
+        screen.blit(bfr1,(563,75))
+        ball_rect=ball.get_rect(center=(bx,by))
+        screen.blit(ball,ball_rect)
+        pygame.display.update()
+
+
+    #selecting the shot
+        for event in pygame.event.get():
+            if event.type==pygame.KEYDOWN and event.key==pygame.K_DOWN :
+                if randomball==1 or randomball==4:
+                    if by>=130 and by<=156:
+                        currentscore=6
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid6'
+                    elif by>=156 and by<=186:
+                        currentscore=4
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid4'
+                    elif by>=186 and by<=210:
+                        currentscore=random.randint(1,2)
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid1'
+                    else:
+                        currentscore=0
+                        currentwicket=1
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active=2
+                    
+                
+                    
+            if event.type==pygame.KEYDOWN and event.key==pygame.K_RIGHT :
+                if randomball==1 and randomball==4:
+                    if by>=130 and by<=156:
+                        currentscore=6
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid6'
+                    elif by>=156 and by<=186:
+                        currentscore=4
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid4'
+                    elif by>=186 and by<=210:
+                        currentscore=random.randint(1,2)
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active='mid1'
+                    else:
+                        currentscore=0
+                        currentwicket=1
+                        score=score+currentscore
+                        wicket+=currentwicket
+                        active=2
+                    
+
+                
+            if event.type==pygame.KEYDOWN and event.key==pygame.K_RIGHT:
+                if randomball==0:
+                    if by>=130 and by<=156:
+                        currentscore=6
+                        score=score+currentscore
+                        active='leg6'
+                    elif by>=156 and by<=186:
+                        currentscore=4
+                        score=score+currentscore
+                        active='leg4'
+                    elif by>=186 and by<=210:
+                        currentscore=random.randint(1,2)
+                        score=score+currentscore
+                        active='leg1'
+                    else:
+                        currentscore=0
+                        score=score+currentscore
+                        active=1
+                    
+                    
+            if event.type==pygame.KEYDOWN and event.key==pygame.K_LEFT:
+                if randomball==2 or randomball==3:
+                    if by>=130 and by<=156:
+                        currentscore=6
+                        score=score+currentscore
+                        active='off6'
+                    elif by>=156 and by<=186:
+                        currentscore=4
+                        score=score+currentscore
+                        active='off4'
+                    elif by>=186 and by<=210:
+                        currentscore=random.randint(1,2)
+                        score=score+currentscore
+                        active='off1'
+                    else:
+                        currentscore=0
+                        score=score+currentscore
+                        active=1
+                    
+
+    
+
+
+                
+        
+#playing the shot  
+    if active== 'mid6' or 'mid4' or 'mid1' or 'leg6' or 'leg4' or 'leg1' or 'off6' or 'off4' or 'off1':
+        createbackground()
+        if active=='mid6':
+            shot(6)
+        elif active=='mid4':
+            shot(7)
+        elif active=='mid1':
+            shot(8)
+        elif active=='leg6':
+            shot(3)
+        elif active=='leg4':
+            shot(4)
+        elif active=='leg1':
+            shot(5)
+        elif active=='off6':
+            shot(0)
+        elif active=='off4':
+            shot(2)
+        elif active=='off1':
+            shot(1)
+        
+        ball_rect=ball.get_rect(center=(bx,by))
+        screen.blit(ball,ball_rect)
+    
+        if bx>=1100 or bx<=20 or by>=520 or by<=20:
+            active=2                
 
