@@ -4,6 +4,7 @@ from sys import exit
 import a
 import time
 
+pygame.init()
 
 screen=pygame.display.set_mode((1152,570))
 pygame.display.set_caption('Cricket')
