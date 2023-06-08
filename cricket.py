@@ -417,5 +417,92 @@ while True:
         screen.blit(ball,ball_rect)
     
         if bx>=1100 or bx<=20 or by>=520 or by<=20:
-            active=2                
+            active=2
+            
+#running the screen which apppears after each ball is bowled
+    if active==2:
+        
+        midgame_screen()
+        show_score(score,wicket,target,balls)
+        
+        
+        for event in pygame.event.get():
+            if score>=target:
+                active=7
+            if wicket==10:
+                active=8
+            if balls==0:
+                active=8
+            if event.type==pygame.KEYDOWN and event.key==pygame.K_SPACE:
+                active=1
+                by=560
+                index=0
+                sindex=0
+                balls=balls-1
+                randomball=random.randint(0,4)
+                currentwicket=0
+                currentscore=0
+                time.sleep(1)
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                exit()
+        if score>=target:
+            active=7
+        if wicket==10:
+            active=8
+        if balls==0:
+            active=8
+    
+    
+# screen which appears when won
+    while active==7:
+        screen.blit(ab,(0,0))
+        mes=font.render(f'You won by {10-wicket} wickets.',True,(51,255,255))
+        screen.blit(mes,(400,230))
+        screen.blit(fr,(450,400))
+        r=font.render('Restart',True,(51,255,255))
+        screen.blit(r,(500,400))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=450 and event.pos[0]<=700 and event.pos[1]>=400 and event.pos[1]<=450:
+                score=0
+                wicket=0
+                active=5
+    
+    
+# screen that appears if won or tied
+    while active==8:
+        screen.blit(ab,(0,0))
+        if target-1==score:
+            m=font.render(f'Match tied.',True,'Red')
+        else:
+            m=font.render(f'You lost by {target-score-1} runs.',True,'Red')
+        screen.blit(m,(400,230))
+        screen.blit(fr,(450,400))
+        r=font.render('Restart',True,(51,255,255))
+        screen.blit(r,(500,400))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=450 and event.pos[0]<=700 and event.pos[1]>=400 and event.pos[1]<=450:
+                score=0
+                wicket=0
+                active=5
+
+
+    
+    
+# defining the quit function
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            pygame.quit()
+            exit()
+        if event.type==pygame.MOUSEMOTION :
+            print(event.pos)
+    pygame.display.update()            
 
