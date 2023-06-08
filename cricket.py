@@ -180,9 +180,12 @@ def show_score(a,b,target,balls_left):
     screen.blit(b,(900,530))
     screen.blit(tscore,(10,530))
     
+#function of playing a shot    
 def shot(x):
     global bx,by
+    #shot index and ball index
     global sindex,bindex
+ #callling the list of coordinates of ball after it is hit for a shot
     sl1=a.l2[x]
     if sindex<len(sl1)-1:
         sindex+=0.75
