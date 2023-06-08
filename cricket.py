@@ -138,3 +138,23 @@ def show_score(a,b,target,balls_left):
     screen.blit(t,(400,530))
     screen.blit(b,(900,530))
     screen.blit(tscore,(10,530))
+    
+def shot(x):
+    global bx,by
+    global sindex,bindex
+    sl1=a.l2[x]
+    if sindex<len(sl1)-1:
+        sindex+=0.75
+    else:
+        sindex=len(sl1)-1
+    bx=sl1[int(sindex)][0]
+    by=sl1[int(sindex)][1]
+    if bindex<len(listb)-1:
+        bindex+=0.1
+    else:
+        bindex=len(listb)-1
+    if x==0 or x==1 or x==2:
+        screen.blit(listb2[int(bindex)],(530,75))
+    else:
+        screen.blit(listb[int(bindex)],(555,75))
+
