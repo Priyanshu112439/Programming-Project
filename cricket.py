@@ -201,4 +201,73 @@ def shot(x):
         screen.blit(listb2[int(bindex)],(530,75))
     else:
         screen.blit(listb[int(bindex)],(555,75))
+        
+#running the game
+while True:
+    #fixing the fps
+    clock.tick(60)
+    screen.fill((0,0,0))
+
+#start screen for choosing the number of overs
+    while active==5:
+        screen.blit(ab,(0,0))
+        screen.blit(ibg,(470,25))
+        screen.blit(fr,(750,140))
+        screen.blit(fr,(750,230))
+        screen.blit(fr,(750,320))
+        screen.blit(q2,(750,90))
+        screen.blit(title,(480,25))
+        screen.blit(o21,(850,140))
+        screen.blit(o22,(850,230))
+        screen.blit(o23,(850,320))
+        pygame.display.update()
+        currentscore=0
+        currentwicket=0
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=750 and event.pos[0]<=1000 and event.pos[1]>=140 and event.pos[1]<=190:
+                overs=2
+                active=6
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=750 and event.pos[0]<=1000 and event.pos[1]>=230 and event.pos[1]<=280:
+                overs=5
+                active=6
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=750 and event.pos[0]<=1000 and event.pos[1]>=320 and event.pos[1]<=370:
+                overs=10
+                active=6
+            else:
+                active=5
+            balls=overs*6
+    
+#start screen for choosing the difficulty game
+    
+    while active==6:
+        pygame.display.update()
+        screen.blit(ab,(0,0))
+        screen.blit(ibg,(470,25))
+        screen.blit(fr,(70,140))
+        screen.blit(fr,(70,230))
+        screen.blit(fr,(70,320))
+        screen.blit(title,(480,25))
+        screen.blit(q,(70,90))
+        screen.blit(o11,(140,140))
+        screen.blit(o12,(120,230))
+        screen.blit(o13,(140,320))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=70 and event.pos[0]<=320 and event.pos[1]>=140 and event.pos[1]<=190:
+                target=random.randint(overs*10-10,overs*10)
+                active=1
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=70 and event.pos[0]<=320 and event.pos[1]>=230 and event.pos[1]<=280:
+                target=random.randint(overs*10+2,overs*10+12)
+                active=1
+            elif event.type==pygame.MOUSEBUTTONDOWN and event.pos[0]>=70 and event.pos[0]<=320 and event.pos[1]>=320 and event.pos[1]<=370:
+                target=random.randint(overs*10+14,overs*10+25)
+                active=1
+            else:
+                active=6        
 
